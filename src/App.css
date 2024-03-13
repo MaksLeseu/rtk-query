@@ -1,5 +1,18 @@
 .container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
 
+.table {
+  border: 1px black solid;
+}
+
+.headerTable {
+  background-color: burlywood;
+}
+.headerTable th {
+  color: darkslateblue;
 }
 
 .preloader {
@@ -8,27 +21,30 @@
   left: 45%;
 }
 
-.users {
-  display: flex;
-  justify-content: center;
-}
-
 .text {
   display: flex;
 }
 
 .firstName {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 18px;
   color: darkgoldenrod;
-  margin: 0;
 }
 
 .lastName {
-  padding-top: 3px;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 14px;
   color: indigo;
-  line-height: 32px;
-  margin: 0;
+}
+
+.email {
+  font-size: 12px;
+}
+
+.iconContainer {
+  width: 50px;
+  height: 50px;
+}
+
+.iconContainer img {
+  width: 100%;
+  height: 100%;
 }
