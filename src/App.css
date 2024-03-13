@@ -2,10 +2,27 @@
 
 }
 
-.text {
+.users {
   display: flex;
   justify-content: center;
-  font-size: 48px;
+}
+
+.text {
+  display: flex;
+}
+
+.firstName {
+  font-size: 28px;
   font-weight: 700;
   color: darkgoldenrod;
+  margin: 0;
+}
+
+.lastName {
+  padding-top: 3px;
+  font-size: 18px;
+  font-weight: 700;
+  color: indigo;
+  line-height: 32px;
+  margin: 0;
 }
