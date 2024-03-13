@@ -1,13 +1,21 @@
 import './App.css'
 import {useGetUsersQuery} from "./service/base-api";
+import {Preloader} from "./Components/Preloader";
 
 export function App() {
-    const users = useGetUsersQuery()
+    const {data, isLoading, isError} = useGetUsersQuery()
 
+    if (isLoading) {
+        return (
+            <div className={'preloader'}>
+                <Preloader />
+            </div>
+        )
+    }
     return (
         <div className={'container'}>
-            <div>{users ?
-                users.data?.data.map((us, id) => (
+            <div>{data ?
+                data.data.map((us, id) => (
                     <div key={id} className={'users'}>
                         {us['id']}.
                         <div>

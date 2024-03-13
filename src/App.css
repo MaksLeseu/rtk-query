@@ -2,6 +2,12 @@
 
 }
 
+.preloader {
+  position: absolute;
+  top: 30%;
+  left: 45%;
+}
+
 .users {
   display: flex;
   justify-content: center;
