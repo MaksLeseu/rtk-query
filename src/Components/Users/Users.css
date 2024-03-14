@@ -1,0 +1,40 @@
+.table {
+    border: 1px black solid;
+}
+
+.headerTable {
+    background-color: burlywood;
+}
+.headerTable th {
+    color: darkslateblue;
+}
+
+.preloader {
+    position: absolute;
+    top: 30%;
+    left: 45%;
+}
+
+.firstName {
+    font-size: 18px;
+    color: darkgoldenrod;
+}
+
+.lastName {
+    font-size: 14px;
+    color: indigo;
+}
+
+.email {
+    font-size: 12px;
+}
+
+.iconContainer {
+    width: 50px;
+    height: 50px;
+}
+
+.iconContainer img {
+    width: 100%;
+    height: 100%;
+}
