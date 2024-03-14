@@ -1,18 +1,29 @@
 import './User.css'
 import {useGetUserQuery} from "../../service/base-api";
+import {useState} from "react";
 
 export const User = () => {
-    const {data} = useGetUserQuery()
+    const [userId, setUserId] = useState<number | null>(null)
+    const {data} = useGetUserQuery({id: userId})
+
+    const [number, setNumber] = useState<number | null>(null)
+
+    const changeUserId = (e: any) => setNumber(e.currentTarget.value)
+    const sendUserId = () => {
+        setUserId(number)
+        setNumber(null)
+    }
 
     return (
-        <table className={'table'}>
-            <tr className={'headerTable'}>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Icon</th>
-            </tr>
-            {data ?
+        <>
+            <table className={'table'}>
+                <tr className={'headerTable'}>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
+                    <th>Icon</th>
+                </tr>
+                {data ?
                     <tr>
                         <th className={'firstName'}>{data.data['first_name']}</th>
                         <th className={'lastName'}>{data.data['last_name']}</th>
@@ -21,6 +32,11 @@ export const User = () => {
                             <img src={data.data['avatar']}/>
                         </th>
                     </tr>
-                : 'Mistake!!!'}</table>
+                    : 'Empty'}</table>
+            <div>
+                <input type={"number"} value={number ?? ''} onChange={changeUserId}/>
+                <button onClick={sendUserId}>Send request.</button>
+            </div>
+        </>
     );
 };

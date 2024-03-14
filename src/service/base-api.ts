@@ -10,8 +10,8 @@ export const baseApi = createApi({
             getUsers: builder.query<UsersType, void>({
                 query: () => `/users`,
             }),
-            getUser: builder.query<any, void>({
-                query: () => '/users/10'
+            getUser: builder.query<any, UserArgsType | void>({
+                query: (args) => `/users/${args?.id}`
             })
         }
     },
@@ -33,4 +33,8 @@ type UsersDataType = {
     "first_name": string
     "last_name": string
     "avatar": string
+}
+
+type UserArgsType = {
+    id: number | null
 }
