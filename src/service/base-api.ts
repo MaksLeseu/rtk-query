@@ -10,11 +10,14 @@ export const baseApi = createApi({
             getUsers: builder.query<UsersType, void>({
                 query: () => `/users`,
             }),
+            getUser: builder.query<any, void>({
+                query: () => '/users/10'
+            })
         }
     },
 })
 
-export const { useGetUsersQuery } = baseApi
+export const { useGetUsersQuery, useGetUserQuery } = baseApi
 
 type UsersType = {
     "page": number
