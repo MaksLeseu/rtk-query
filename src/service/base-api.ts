@@ -29,12 +29,22 @@ export const baseApi = createApi({
                         }
                     }
                 }
+            }),
+            deleteUser: builder.mutation<UserArgType | void>({
+                query: (arg: UserArgType) => {
+                    if (arg.id) {
+                        return {
+                            url: `/users/${arg.id}`,
+                            method: 'DELETE',
+                        }
+                    }
+                }
             })
         }
     },
 })
 
-export const { useGetUsersQuery, useGetUserQuery, useCreateUserMutation } = baseApi
+export const { useGetUsersQuery, useGetUserQuery, useCreateUserMutation, useDeleteUserMutation } = baseApi
 
 type UsersType = {
     "page": number
