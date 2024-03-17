@@ -4,3 +4,17 @@
   position: relative;
 }
 
+.users {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.user {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.createUser {
+  margin-left: 5px;
+  margin-right: 5px;
+}

@@ -33,9 +33,9 @@ export const User = () => {
                         </th>
                     </tr>
                     : 'Empty'}</table>
-            <div>
+            <div className={'form'}>
                 <input type={"number"} value={number ?? ''} onChange={changeUserId}/>
-                <button onClick={sendUserId}>Send request.</button>
+                <button disabled={!number || number > 12 || number < 1} onClick={sendUserId}>Find a user.</button>
             </div>
         </>
     );

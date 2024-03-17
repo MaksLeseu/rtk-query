@@ -10,14 +10,31 @@ export const baseApi = createApi({
             getUsers: builder.query<UsersType, void>({
                 query: () => `/users`,
             }),
-            getUser: builder.query<any, UserArgsType | void>({
-                query: (args) => `/users/${args?.id}`
+            getUser: builder.query<UserArgType, UserArgType | void>({
+                query: (arg: UserArgType) => {
+                    if (arg.id) {
+                        return {
+                            url: `/users/${arg?.id}`
+                        }
+                    }
+                }
+            }),
+            createUser: builder.mutation<CreateUserArgsType | {}, CreateUserArgsType>({
+                query: (args: CreateUserArgsType) => {
+                    if (args.name) {
+                        return {
+                            url: `/users`,
+                            method: 'POST',
+                            body: args
+                        }
+                    }
+                }
             })
         }
     },
 })
 
-export const { useGetUsersQuery, useGetUserQuery } = baseApi
+export const { useGetUsersQuery, useGetUserQuery, useCreateUserMutation } = baseApi
 
 type UsersType = {
     "page": number
@@ -35,6 +52,11 @@ type UsersDataType = {
     "avatar": string
 }
 
-type UserArgsType = {
+type UserArgType = {
     id: number | null
+}
+
+export type CreateUserArgsType = {
+    name: string
+    job: string
 }
