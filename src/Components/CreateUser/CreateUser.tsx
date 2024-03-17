@@ -3,7 +3,6 @@ import {CreateUserArgsType, useCreateUserMutation} from "../../service/base-api"
 import './CreateUser.css'
 
 
-
 export const CreateUser = () => {
     const [createUser, response] = useCreateUserMutation()
 

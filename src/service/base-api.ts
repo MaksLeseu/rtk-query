@@ -30,6 +30,17 @@ export const baseApi = createApi({
                     }
                 }
             }),
+            updateUser: builder.mutation<UpdateUserArgsType, CreateUserArgsType>({
+                query: (args: UpdateUserArgsType) => {
+                    if (args.params.name) {
+                        return {
+                            url: `/users/${args.id}`,
+                            method: 'PUT',
+                            body: args.params
+                        }
+                    }
+                }
+            }),
             deleteUser: builder.mutation<UserArgType | void>({
                 query: (arg: UserArgType) => {
                     if (arg.id) {
@@ -44,7 +55,7 @@ export const baseApi = createApi({
     },
 })
 
-export const { useGetUsersQuery, useGetUserQuery, useCreateUserMutation, useDeleteUserMutation } = baseApi
+export const { useGetUsersQuery, useGetUserQuery, useCreateUserMutation, useUpdateUserMutation, useDeleteUserMutation } = baseApi
 
 type UsersType = {
     "page": number
@@ -69,4 +80,9 @@ type UserArgType = {
 export type CreateUserArgsType = {
     name: string
     job: string
+}
+
+type UpdateUserArgsType = {
+    id: string
+    params: CreateUserArgsType
 }
