@@ -8,3 +8,11 @@
   margin-right: 5px;
   margin-left: 5px;
 }
+
+.auth {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+}

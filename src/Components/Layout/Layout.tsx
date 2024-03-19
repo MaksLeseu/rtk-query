@@ -2,7 +2,7 @@ import {FC, ReactNode} from "react";
 import {Outlet} from "react-router-dom";
 
 type PropsType = {
-    children: ReactNode
+    children?: ReactNode
 }
 
 export const Layout: FC<PropsType> = ({children}) => {
