@@ -1,11 +1,10 @@
 import './UpdateUser.css'
 import {useState} from "react";
-import {CreateUserArgsType, useUpdateUserMutation} from "../../service/base-api";
+import {CreateUserArgsType, useUpdateUserMutation} from "../../service/users.service";
 
 
 export const UpdateUser = () => {
     const [updateUser, response] = useUpdateUserMutation()
-    console.log(response)
 
     const [userId, setUserId] = useState<number | undefined>(undefined)
     const [user, setUser] = useState<CreateUserArgsType>({

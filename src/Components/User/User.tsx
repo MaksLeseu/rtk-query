@@ -1,6 +1,6 @@
 import './User.css'
-import {useGetUserQuery} from "../../service/base-api";
 import {useState} from "react";
+import {useGetUserQuery} from "../../service/users.service";
 
 export const User = () => {
     const [userId, setUserId] = useState<number | null>(null)

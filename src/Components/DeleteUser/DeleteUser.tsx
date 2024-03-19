@@ -1,6 +1,6 @@
 import './DeleteUser.css'
 import {useState} from "react";
-import {useDeleteUserMutation} from "../../service/base-api";
+import {useDeleteUserMutation} from "../../service/users.service";
 
 export const DeleteUser = () => {
     const [deleteUser, response] = useDeleteUserMutation()

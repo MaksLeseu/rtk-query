@@ -1,6 +1,6 @@
-import {useGetUsersQuery} from "../../service/base-api";
 import {Preloader} from "../Preloader/Preloader";
 import './Users.css'
+import {useGetUsersQuery} from "../../service/users.service";
 
 export const Users = () => {
     const {data, isLoading} = useGetUsersQuery()

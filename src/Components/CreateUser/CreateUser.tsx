@@ -1,6 +1,6 @@
 import {useState} from "react";
-import {CreateUserArgsType, useCreateUserMutation} from "../../service/base-api";
 import './CreateUser.css'
+import {CreateUserArgsType, useCreateUserMutation} from "../../service/users.service";
 
 
 export const CreateUser = () => {
