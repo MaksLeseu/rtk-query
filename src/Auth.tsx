@@ -1,8 +1,13 @@
 import './App.css'
 import {useLoginMutation} from "./service/auth.service";
+import {sendLocalStorage} from "./localStorage/localStorage";
 
 export const Auth = () => {
-    const [login] = useLoginMutation()
+    const [login, response] = useLoginMutation()
+
+    if (response.data) {
+        sendLocalStorage(response.data.token)
+    }
 
     const loginHandler = () => login({
         email: 'iteishnik@gamil.com',

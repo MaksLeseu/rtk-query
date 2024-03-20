@@ -11,12 +11,21 @@ const authService = baseAuthApi.injectEndpoints({
                       body: args
                   }
               }
+          }),
+          authMe: builder.mutation({
+              query: (args: any) => {
+                  return {
+                      url: '/me',
+                      method: 'POST',
+                      body: args
+                  }
+              }
           })
         }
     }
 })
 
-export const {useLoginMutation} = authService
+export const {useLoginMutation, useAuthMeMutation} = authService
 
 type LoginType = {
     email: string
