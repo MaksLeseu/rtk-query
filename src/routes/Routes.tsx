@@ -8,6 +8,10 @@ export const BASE_ROUTE = '/app';
 
 const publicRoutes = [
     {
+        path: `/`,
+        element: <Navigate to={`${BASE_ROUTE}`} />
+    },
+    {
         path: `${BASE_ROUTE}/login`,
         element: (
             <Layout>

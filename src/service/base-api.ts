@@ -8,3 +8,11 @@ export const baseApi = createApi({
     }),
     endpoints: () => ({}),
 })
+
+export const baseAuthApi = createApi({
+    reducerPath: 'baseAuthApi',
+    baseQuery: fetchBaseQuery({
+        baseUrl: 'http://localhost:7542/2.0/auth'
+    }),
+    endpoints: () => ({})
+})

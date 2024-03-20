@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import {baseApi} from "./base-api";
+import {baseApi, baseAuthApi} from "./base-api";
 
 export const store = configureStore({
     reducer: {
-        [baseApi.reducerPath]: baseApi.reducer
+        [baseApi.reducerPath]: baseApi.reducer,
+        [baseAuthApi.reducerPath]: baseAuthApi.reducer
     },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(baseApi.middleware),
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(baseApi.middleware, baseAuthApi.middleware),
 })
 
 export type AppDispatch = typeof store.dispatch
