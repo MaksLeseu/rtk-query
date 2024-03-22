@@ -7,8 +7,6 @@ type PropsType = {
 
 export const Layout: FC<PropsType> = ({children}) => {
     return (
-        <div>
-            {children ? children : <Outlet />}
-        </div>
+        <div>{children ? children : <Outlet />}</div>
     );
 };

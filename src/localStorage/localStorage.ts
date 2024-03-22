@@ -1,4 +1,4 @@
-export const sendTokenToLocalStorage = (token: string) => {
+export const saveToken = (token: string) => {
     if (token) {
         localStorage.setItem('token', JSON.stringify(token))
     }

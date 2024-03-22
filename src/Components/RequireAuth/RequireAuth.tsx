@@ -1,9 +1,15 @@
 import {BASE_ROUTE} from "../../routes/Routes";
 import {Navigate} from "react-router-dom"
-import {Layout} from "../Layout/Layout";
+import {useMeQuery} from "../../service/auth.service";
+import {Outlet} from "react-router-dom";
 
 export const RequireAuth = () => {
-    const state = false
+    const {isError, isLoading} = useMeQuery()
 
-    return state ? <Layout /> : <Navigate to={`${BASE_ROUTE}/login`} replace/>
+    if (isLoading) {
+        return null
+    }
+    const state = !isError
+
+    return state ? <Outlet /> : <Navigate to={`${BASE_ROUTE}login`}/>
 };

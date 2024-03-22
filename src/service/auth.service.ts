@@ -3,47 +3,26 @@ import  {baseAuthApi} from "./base-api";
 const authService = baseAuthApi.injectEndpoints({
     endpoints: builder => {
         return {
-          login: builder.mutation<ResponseLoginType, LoginType>({
+          login: builder.mutation<any, LoginType>({
               query: (args: LoginType) => {
                   return {
                       url: '/login',
                       method: 'POST',
-                      body: args
+                      body: args,
                   }
               }
           }),
-          authMe: builder.mutation({
-              query: (args: any) => {
-                  return {
-                      url: '/me',
-                      method: 'POST',
-                      body: args
-                  }
-              }
+          me: builder.query({
+              query: () => '/me'
           })
         }
     }
 })
 
-export const {useLoginMutation, useAuthMeMutation} = authService
+export const {useLoginMutation, useMeQuery} = authService
 
-type LoginType = {
+export type LoginType = {
     email: string
     password: string
     rememberMe?: boolean
-}
-
-type ResponseLoginType = {
-    id: string
-    email: string
-    rememberMe: boolean
-    isAdmin: boolean
-    name: string
-    verified: boolean
-    publicCardPacksCount: number
-    created: string
-    updated: string
-    __v: number
-    token: string
-    tokenDeathTime: number
 }
