@@ -4,6 +4,7 @@ const authService = baseAuthApi.injectEndpoints({
     endpoints: builder => {
         return {
           login: builder.mutation<any, LoginType>({
+              invalidatesTags: ['Me'],
               query: (args: LoginType) => {
                   return {
                       url: '/login',
@@ -13,7 +14,8 @@ const authService = baseAuthApi.injectEndpoints({
               }
           }),
           me: builder.query({
-              query: () => '/me'
+              providesTage: ['Me'],
+              query: () => '/me',
           })
         }
     }
