@@ -3,7 +3,7 @@ import './Users.css'
 import {useGetUsersQuery} from "../../service/users.service";
 
 export const Users = () => {
-    const {data, isLoading} = useGetUsersQuery()
+    const {currentData, isLoading} = useGetUsersQuery()
 
     if (isLoading) {
         return (
@@ -21,8 +21,8 @@ export const Users = () => {
                 <th>Email</th>
                 <th>Icon</th>
             </tr>
-            {data ?
-                data.data.map((us, id) => (
+            {currentData ?
+                currentData.data.map((us, id) => (
                     <tr key={id}>
                         <th className={'firstName'}>{us['first_name']}</th>
                         <th className={'lastName'}>{us['last_name']}</th>

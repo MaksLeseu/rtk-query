@@ -18,6 +18,28 @@ const usersService =  baseApi.injectEndpoints({
                 }
             }),
             createUser: builder.mutation<CreateUserArgsType | {}, CreateUserArgsType>({
+                // Pessimistic updates.
+
+                // It's important, to change data on currentData in hooks called useGetUsersQuery,
+                // because the currentDate point is current data :) and to look the updated state, you should to complete it.
+                async onQueryStarted (args: CreateUserArgsType, {dispatch, getState, queryFulfilled}) {
+                    const state = getState() as RootState
+                    const res = await queryFulfilled
+                    const requestId = Object.keys(state.baseApi.mutations)[0]
+
+                    dispatch(usersService.util.updateQueryData('getUsers', undefined, (draft) => {
+                        const body = {
+                            'avatar': 'https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg',
+                            'email': 'iteishnik@gmail.com',
+                            'first_name': args.name,
+                            'id': 100500,
+                            'last_name': args.job
+                        }
+                        draft.data.unshift(body)
+                        const user = draft.data[0]
+                        console.log({...user})
+                    }))
+                },
                 query: (args: CreateUserArgsType) => {
                     if (args.name) {
                         return {
@@ -31,6 +53,7 @@ const usersService =  baseApi.injectEndpoints({
             }),
             updateUser: builder.mutation<UpdateUserArgsType, CreateUserArgsType>({
                 invalidatesTags: ['Users'],
+                // Optimistic updates
                 async onQueryStarted (args: UpdateUserArgsType, {dispatch, getState, queryFulfilled}) {
                     const state = getState() as RootState
 
