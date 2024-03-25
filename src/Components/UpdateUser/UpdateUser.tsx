@@ -1,10 +1,11 @@
 import './UpdateUser.css'
 import {useState} from "react";
-import {CreateUserArgsType, useUpdateUserMutation} from "../../service/users.service";
+import {CreateUserArgsType, useGetUsersQuery, useUpdateUserMutation} from "../../service/users.service";
 
 
 export const UpdateUser = () => {
     const [updateUser, response] = useUpdateUserMutation()
+    const {data, isLoading} = useGetUsersQuery()
 
     const [userId, setUserId] = useState<number | undefined>(undefined)
     const [user, setUser] = useState<CreateUserArgsType>({
@@ -53,25 +54,30 @@ export const UpdateUser = () => {
             </div>
             <div className={'form'}>
                 <input value={user.name} placeholder={'Name'} onChange={(e) => changeInputValue('name', e)}/>
-                <input value={user.job} placeholder={'Job'} onChange={(e) => changeInputValue('job', e)}/>
                 <button
-                    disabled={!userId || !user.name || !user.job}
+                    disabled={!userId || !user.name}
                     onClick={updateUserHandler}
                 >
                     Update the user.
                 </button>
-                <>
+                <div>
                     {
                         response.status === 'fulfilled' && response.isSuccess ?
                             <div>
                                 <p>Name: {response.data['name']}</p>
-                                <p>Job: {response.data['job']}</p>
-                                <p>Date: {response.data['updatedAt']}</p>
                             </div>
                             :
-                            'nothing'
+                            <div>
+                                {
+                                    data ?
+                                        <div>
+                                            <p>Name: {data.data[0]['first_name']}</p>
+                                        </div>
+                                        : null
+                                }
+                            </div>
                     }
-                </>
+                </div>
             </div>
         </div>
     );

@@ -7,7 +7,7 @@ const authService = baseAuthApi.injectEndpoints({
               invalidatesTags: ['Me'],
               query: (args: LoginType) => {
                   return {
-                      url: '/login',
+                      url: '/v1/auth/login',
                       method: 'POST',
                       body: args,
                   }
@@ -15,7 +15,7 @@ const authService = baseAuthApi.injectEndpoints({
           }),
           me: builder.query({
               providesTage: ['Me'],
-              query: () => '/me',
+              query: () => '/v1/auth/me',
           })
         }
     }

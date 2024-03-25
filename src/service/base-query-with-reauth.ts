@@ -9,7 +9,7 @@ import { Mutex } from 'async-mutex'
 // create a new mutex
 const mutex = new Mutex()
 const baseQuery = fetchBaseQuery({
-        baseUrl: 'https://api.flashcards.andrii.es/v1/auth',
+        baseUrl: 'https://api.flashcards.andrii.es',
         credentials: "include"
     })
 
@@ -30,7 +30,7 @@ export const baseQueryWithReauth: BaseQueryFn<
             const release = await mutex.acquire()
             try {
                 const refreshResult = await baseQuery(
-                    {method: 'POST', url: '/refresh-token'},
+                    {method: 'POST', url: '/v1/auth/refresh-token'},
                     api,
                     extraOptions,
                 )

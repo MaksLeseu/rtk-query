@@ -4,6 +4,7 @@ import {CreateUser} from "./Components/CreateUser/CreateUser";
 import {DeleteUser} from "./Components/DeleteUser/DeleteUser";
 import {UpdateUser} from "./Components/UpdateUser/UpdateUser";
 import './App.css'
+import {Decks} from "./Components/Decks/Decks";
 
 export const Container = () => {
     return (
