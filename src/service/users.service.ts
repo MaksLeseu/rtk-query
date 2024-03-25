@@ -23,9 +23,7 @@ const usersService =  baseApi.injectEndpoints({
                 // It's important, to change data on currentData in hooks called useGetUsersQuery,
                 // because the currentDate point is current data :) and to look the updated state, you should to complete it.
                 async onQueryStarted (args: CreateUserArgsType, {dispatch, getState, queryFulfilled}) {
-                    const state = getState() as RootState
                     const res = await queryFulfilled
-                    const requestId = Object.keys(state.baseApi.mutations)[0]
 
                     dispatch(usersService.util.updateQueryData('getUsers', undefined, (draft) => {
                         const body = {
@@ -36,8 +34,6 @@ const usersService =  baseApi.injectEndpoints({
                             'last_name': args.job
                         }
                         draft.data.unshift(body)
-                        const user = draft.data[0]
-                        console.log({...user})
                     }))
                 },
                 query: (args: CreateUserArgsType) => {
