@@ -18,13 +18,20 @@ const usersService =  baseApi.injectEndpoints({
                 }
             }),
             createUser: builder.mutation<CreateUserArgsType | {}, CreateUserArgsType>({
-                // Pessimistic updates.
+                // PESSIMISTIC UPDATES
 
                 // It's important, to change data on currentData in hooks called useGetUsersQuery,
                 // because the currentDate point is current data :) and to look the updated state, you should to complete it.
                 async onQueryStarted (args: CreateUserArgsType, {dispatch, getState, queryFulfilled}) {
+
+                    // The queryFulfilled is here, because the POST request should compete, after this
+                    // data add to the state and after this the GET request to send to the server. We can see
+                    // updated data after only POST request.
+                    // (usually we send two requests to the server, to add something - POST, GET and only after
+                    // complete GET request we can update data).
                     const res = await queryFulfilled
 
+                    // undefined is key in the request. I can check it in Redux tool
                     dispatch(usersService.util.updateQueryData('getUsers', undefined, (draft) => {
                         const body = {
                             'avatar': 'https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg',
@@ -49,10 +56,11 @@ const usersService =  baseApi.injectEndpoints({
             }),
             updateUser: builder.mutation<UpdateUserArgsType, CreateUserArgsType>({
                 invalidatesTags: ['Users'],
-                // Optimistic updates
+                // OPTIMISTIC UPDATES
                 async onQueryStarted (args: UpdateUserArgsType, {dispatch, getState, queryFulfilled}) {
                     const state = getState() as RootState
 
+                    // The draft is - current state
                     dispatch(usersService.util.updateQueryData('getUsers', undefined, (draft) => {
                         const user = draft.data.find(user => user.id === +args.id)
 
@@ -72,6 +80,9 @@ const usersService =  baseApi.injectEndpoints({
                         }
 
                     }))
+
+                    // The queryFulfilled send request to the server. We create Optimistic update, to update data
+                    // before send request. And for this we write the queryFulfilled after the dispatch function.
                     await queryFulfilled
                 },
                 query: (args: UpdateUserArgsType) => {

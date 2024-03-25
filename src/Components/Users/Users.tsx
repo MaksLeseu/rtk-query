@@ -3,6 +3,7 @@ import './Users.css'
 import {useGetUsersQuery} from "../../service/users.service";
 
 export const Users = () => {
+    // The current page, because we should add a new user before GET request. Usually we will use just - data
     const {currentData, isLoading} = useGetUsersQuery()
 
     if (isLoading) {
